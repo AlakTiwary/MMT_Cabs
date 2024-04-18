@@ -1,0 +1,50 @@
+package PageFactory;
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+
+
+
+public class CabPageFactory {
+	WebDriver driver;
+	
+	public CabPageFactory(WebDriver driver) {
+		this.driver=driver;
+	}
+	
+	@FindBy(xpath="//a[@href=\"https://www.makemytrip.com/cabs/\"]")
+	WebElement HomepageCab;
+	
+	@FindBy(xpath="//li[@data-cy=\"outstationOneWay\"]")
+	WebElement oneWay;
+	
+	@FindBy(xpath="//div[@class=\"csw outstationOneway\"]/child::div[1]/child::div/child::label/child::input[@id=\"fromCity\"]")
+	WebElement source;
+	
+	@FindBy(xpath="//div[@class=\"csw outstationOneway\"]/child::div[1]/child::div/child::label/child::input[@id=\"to\"]")
+	WebElement destination;
+	
+	@FindBy(xpath="//a[text()=\"Search\"]")
+	WebElement search;
+	
+	public void Search() {
+		search.click();
+	}
+	
+	
+	
+	public void clickCab() {
+		HomepageCab.click();
+	}
+	
+	public void clickOneWay() {
+		oneWay.click();
+	}
+
+
+
+	
+	
+
+}

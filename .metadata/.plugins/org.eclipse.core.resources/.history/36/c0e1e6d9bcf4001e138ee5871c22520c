@@ -1,0 +1,60 @@
+package Cabs_StepDefinition;
+
+import java.awt.AWTException;
+
+import org.openqa.selenium.WebDriver;
+//import org.testng.annotations.Test;
+import org.testng.annotations.Test;
+
+import DriverSetup.DriverCab;
+import PageFactory.CabPageFactory;
+import io.cucumber.java.en.And;
+import io.cucumber.java.en.Given;
+import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
+@Test
+public class CabTesting {
+	WebDriver driver;
+	CabPageFactory cpf;
+	DriverCab driv;
+	
+	@Given("User is on Homepage")
+	public void user_is_on_homepage() {
+	    // Write code here that turns the phrase above into concrete actions
+		driv.chromeDriver();
+	    
+	    
+	}
+	@When("User selects Cab option")
+	public void user_selects_cab_option() {
+	    // Write code here that turns the phrase above into concrete actions
+		cpf=new CabPageFactory(driver);
+	    
+	}
+	@When("User selects Outstaion One-Way option")
+	public void user_selects_outstaion_one_way_option() {
+	    // Write code here that turns the phrase above into concrete actions
+		cpf.clickOneWay();
+	}
+	@When("^User enters the From \"([^\"]*)\" ,To \"([^\"]*)\",\"([^\"]*)\" and \"([^\"]*)\"$")
+	public void user_enters_the_from_source_to_destination_departure_date_and_pickup_time(String Source,String Destination,String Departure_Date,String Pickup_Time) throws AWTException {
+	    // Write code here that turns the phrase above into concrete actions
+		cpf.enterSource(Source);
+		cpf.enterDest(Destination);
+		
+	  
+	}
+	@When("Click on Search button")
+	public void click_on_search_button() {
+	    // Write code here that turns the phrase above into concrete actions
+		cpf.Search();
+	    
+	}
+	@Then("Landing page of Outstaion One-Way is opened")
+	public void landing_page_of_outstaion_one_way_is_opened() {
+	    // Write code here that turns the phrase above into concrete actions
+		
+		System.out.println("Landing Page");
+
+	}
+}

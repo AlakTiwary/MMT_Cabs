@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="Cucumber" time="88.359" tests="5" skipped="0" failures="1" errors="0">
+<testcase classname="To check the functionality of Cabs section of MakeMyTrip" name="To check OneWay functionality of cab option - Example #1.1" time="19.107">
+<system-out><![CDATA[
+Given User is on Homepage...................................................passed
+When User selects Cab option................................................passed
+When User selects Outstaion One-Way option..................................passed
+And User enters the details "Mumbai","Delhi","24,May 2024" and "10:00:AM"...passed
+And click on Search button..................................................passed
+Then Landing page of Outstaion One-Way is opened............................passed
+]]></system-out>
+</testcase>
+<testcase classname="To check the functionality of Cabs section of MakeMyTrip" name="To verify Outstation Round-Trip functionality of cab option - Example #1.1" time="17.092">
+<system-out><![CDATA[
+Given User is on Homepage...................................................passed
+When User selects Cab option................................................passed
+And User clicks on Outstation Round-Trip....................................passed
+And User enters "Mumbai","Pune","24,April 2024","27,April 2024" ,"10:00:AM" and "10:00:AM".passed
+And Click on the Search button..............................................passed
+Then Landing page of Outstation Round-Trip is opened........................passed
+]]></system-out>
+</testcase>
+<testcase classname="To check the functionality of Cabs section of MakeMyTrip" name="To verfiy Airport Transfer functionality of cab option" time="17.82">
+<system-out><![CDATA[
+Given User is on Homepage...................................................passed
+When User selects Cab option................................................passed
+When User clicks on Airport Transfer........................................passed
+And User enter the details..................................................passed
+And Click on the search button..............................................passed
+And User click on book cab from the given options...........................passed
+Then Landing page of cab booking is opened and user review the booking......passed
+]]></system-out>
+</testcase>
+<testcase classname="To check the functionality of Cabs section of MakeMyTrip" name="To verify the Hourly Rental functionality of cab option" time="18.346">
+<system-out><![CDATA[
+Given User is on Homepage...................................................passed
+When User selects Cab option................................................passed
+When User clicks on Hourly Rental...........................................passed
+And User enters the details of trip.........................................passed
+And click on search button..................................................passed
+Then Landing page of Hourly Rental is opened................................passed
+And User applies for an EV cab..............................................passed
+And User click on Book cab..................................................passed
+Then review page of booking is opened.......................................passed
+]]></system-out>
+</testcase>
+<testcase classname="To check the functionality of Cabs section of MakeMyTrip" name="To verify  Airport transfer functionality of To the Airport." time="15.714">
+<failure type="java.lang.AssertionError" message="expected [true] but found [false]">
+<![CDATA[java.lang.AssertionError: expected [true] but found [false]
+	at org.testng.Assert.fail(Assert.java:111)
+	at org.testng.Assert.failNotEquals(Assert.java:1578)
+	at org.testng.Assert.assertTrue(Assert.java:57)
+	at org.testng.Assert.assertTrue(Assert.java:67)
+	at StepDefinition.CabStepDef.list_of_cabs_are_displayed(CabStepDef.java:227)
+	at ✽.list of cabs are displayed(file:///C:/Users/ALATIWAR/Desktop/Sprint/MakeMyTrip_Cab/src/test/resources/feature/cabtest.feature:65)
+]]>
+</failure>
+<system-out><![CDATA[
+Given User is on Homepage...................................................passed
+When User selects Cab option................................................passed
+When user clicks on airport transfer........................................passed
+And user enters the details of trip from one airport to another airport.....passed
+And click on the search button..............................................passed
+Then list of cabs are displayed.............................................failed
+]]></system-out>
+</testcase>
+</testsuite>

@@ -1,0 +1,170 @@
+package PageFactory;
+
+import java.awt.AWTException;
+import java.awt.Robot;
+import java.awt.event.KeyEvent;
+import java.time.Duration;
+import java.util.List;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+public class CabPF{
+	static WebDriver driver;
+	
+	public CabPF(WebDriver driver) 
+	{   
+		this.driver=driver;
+		PageFactory.initElements(driver,this);
+	
+	}
+	WebDriverWait wait=new WebDriverWait(driver,Duration.ofSeconds(3));
+	
+	 @FindBy(xpath="//ul[@class=\"makeFlex font12 headerIconsGap\"]/child::li[7]/child::span/child::a")
+	 WebElement homepageCab;
+   
+	@FindBy(xpath="//ul[@class=\"latoBlack greyText b2c_cswTabs\"]/child::li[1]")
+	WebElement oneWay;
+	
+	@FindBy(xpath="//span[contains(text(),'From')]")
+	WebElement source;
+	
+	@FindBy(xpath="//div[@class=\"csw outstationOneway\"]/child::div[1]/child::div/child::label/child::input[@id=\"to\"]")
+	WebElement destination;
+	
+	@FindBy(xpath="//a[text()=\"Search\"]")
+	WebElement search;
+	
+	@FindBy(xpath="//input[contains(@placeholder,'From')]")
+	WebElement sourceInput;
+	
+	@FindBy(xpath="//div[@role=\"combobox\"]/child::input")
+	WebElement destInput;
+	
+	@FindBy(xpath="//div[@class=\"DayPicker-Months\"]/child::div[1]/child::div[1]/child::div")
+	WebElement monthAndYear;
+	
+	@FindBy(xpath="//div[@class=\"DayPicker-Day\"]")
+	List<WebElement> datePath;
+	
+	@FindBy(xpath="//div[@class=\"DayPicker-wrapper\"]/child::div/child::span[2]")
+	WebElement nextButton;
+	
+	@FindBy(xpath="//li[@data-cy=\"HrSlots_81\"]")
+	List<WebElement> hrTime;
+	
+	@FindBy(xpath="//ul[@class=\"newTimeSlotMinUl\"]/li")
+	List<WebElement> minTime;
+	
+	@FindBy(xpath="//ul[@class=\"newTimeSlotMerUl\"]/li")
+	List<WebElement> merTime;
+	
+	@FindBy(xpath="//span[@class=\"applyBtnText\"]")
+	WebElement applyBtn;
+	
+  
+	public void clickCab() {
+		homepageCab.click();
+	}
+	
+	public void clickOneWay() {
+		oneWay.click();
+	}
+    public void enterSource(String s) throws InterruptedException, AWTException  {
+    	wait.until(ExpectedConditions.elementToBeClickable(source)).click();
+    	//sourceInput.clear();
+    	sourceInput.sendKeys(s);
+        Robot r=new Robot();
+        r.keyPress(KeyEvent.VK_DOWN);
+        r.keyRelease(KeyEvent.VK_DOWN);
+        r.keyPress(KeyEvent.VK_ENTER);	       
+        r.keyRelease(KeyEvent.VK_ENTER);
+    	
+    	
+    	//wait.until(ExpectedConditions.elementToBeClickable(sourceInput));
+    	  
+   
+    }
+    public void enterDest(String dest) throws AWTException, InterruptedException  
+        {
+    	destInput.clear();
+    	destInput.sendKeys(dest);
+    	//Thread.sleep(2000);
+    	Robot r=new Robot();
+    	r.keyPress(KeyEvent.VK_DOWN);
+        r.keyRelease(KeyEvent.VK_DOWN);
+        r.keyPress(KeyEvent.VK_ENTER);	       
+        r.keyRelease(KeyEvent.VK_ENTER);
+   
+         }
+    public void enterDate(String dep_date) {
+    	String[] date=dep_date.split(",");
+    	String day=date[0];
+    	String monthYear=date[1];
+    	Boolean flag=true;
+    	while(flag==true) 
+    	{
+    	   if(monthYear.equalsIgnoreCase(monthAndYear.getText()))
+    	    {
+    		    break;
+    	    }
+    	   else {
+    		   nextButton.click();
+    	   }
+    	   
+    	}
+    	//List<WebElement> days=datePath;
+    	for(WebElement d:datePath)
+    	{
+    		String dayOfDate=d.getText();
+    		if(dayOfDate.equals(day)) 
+    		{
+    			d.click();
+    			break;
+    		}
+    	}
+    }
+    
+    
+    
+    public void enterTime(String timee) {
+    	String[] tim=timee.split(":");
+    	String hr=tim[0];
+    	String min=tim[1];
+    	String meredian=tim[2];
+    	for (WebElement  hour: hrTime) 
+    	{
+            ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView();", hour);
+            // Example: Selecting the hour based on text
+            if (hour.getText().equals(hr)) {
+                hour.click();
+                break; // Break the loop after selecting the desired hour
+            }
+        }
+    	for(WebElement minute:minTime) {
+    		((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView();",minute);
+    		if(minute.getText().equals(min)){
+    			minute.click();
+    			break;
+    		}
+    	}
+    	for(WebElement mer:merTime) {
+    		((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView();", mer);
+    		if(mer.getText().equals(meredian)) {
+    			mer.click();
+    			break;
+    		}
+    	}
+    	
+    }
+    public void Search() {
+		search.click();
+	}
+	
+}

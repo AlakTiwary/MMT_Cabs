@@ -1,0 +1,88 @@
+package StepDefinition;
+
+import java.awt.AWTException;
+import java.awt.Robot;
+import java.awt.event.KeyEvent;
+import java.util.List;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import DriverSetup.SetupDriver;
+import PageFactory.CabPF;
+import io.cucumber.datatable.DataTable;
+import io.cucumber.java.en.And;
+import io.cucumber.java.en.Given;
+import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
+
+public class CabStepDef {
+     WebDriver driver;
+	 CabPF cpf;
+	
+	
+	@Given("User is on Homepage")
+	public void user_is_on_homepage() throws InterruptedException 
+	{
+	  driver=SetupDriver.chromeDriver();
+	  
+	}
+
+	@When("User selects Cab option")
+	public void user_selects_cab_option() throws InterruptedException 
+	{
+		cpf=new CabPF(driver);
+       cpf.clickCab();
+
+	}
+
+	@And("User selects Outstaion One-Way option")
+	public void user_selects_outstaion_one_way_option() 
+	{
+		//cpf.clickOneWay();
+		System.out.println(" ");
+	}
+
+	@And("User enters the details {string},{string},{string} and {string}")
+	public void user_enters_the_details_and(String source, String destin, String date, String time) throws InterruptedException, AWTException {
+	
+     cpf.enterSource(source);
+     cpf.enterDest(destin);
+     cpf.enterDate(date);
+     cpf.enterTime(time);
+	}
+
+	@And("Click on Search button")
+	public void click_on_search_button() {
+     cpf.Search();
+	}
+
+	@Then("Landing page of Outstaion One-Way is opened")
+	public void landing_page_of_outstaion_one_way_is_opened() {
+	    System.out.println(" ");
+	}
+	@When("User clicks on Outstation Round-Trip")
+	public void user_clicks_on_outstation_round_trip() {
+		
+	    cpf.clickRoundTrip();
+	}
+
+	@When("User enters {string},{string},{string},{string} ,{string} and {string}")
+	public void user_enters_and(String source, String destina, String depat_date, String return_date, String pick_time, String drop_time) throws InterruptedException, AWTException {
+	    cpf.enterSource(source);
+	    cpf.enterDest(destina);
+	    cpf.enterDate(depat_date);
+	}
+
+	@When("Click on the Search button")
+	public void click_on_the_search_button() {
+	    // Write code here that turns the phrase above into concrete actions
+	    throw new io.cucumber.java.PendingException();
+	}
+
+	@Then("Landing page of Outstation Round-Trip is opened")
+	public void landing_page_of_outstation_round_trip_is_opened() {
+	    // Write code here that turns the phrase above into concrete actions
+	    throw new io.cucumber.java.PendingException();
+	}
+
+}

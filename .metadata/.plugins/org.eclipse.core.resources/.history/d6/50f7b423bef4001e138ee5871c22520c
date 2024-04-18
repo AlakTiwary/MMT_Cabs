@@ -1,0 +1,68 @@
+package MMT.Mmt_Cab;
+import java.awt.AWTException;
+import java.awt.Robot;
+import java.awt.event.KeyEvent;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.Select;
+
+import io.github.bonigarcia.wdm.WebDriverManager;
+public class App 
+{
+	 
+    public static void main( String[] args ) throws InterruptedException, AWTException
+    {
+    	//PageFac pf=new PageFac();
+        WebDriverManager.chromedriver().setup();
+        WebDriver driver=new ChromeDriver();
+        driver.get("https://www.makemytrip.com/");
+        driver.manage().window().maximize();
+        Thread.sleep(3000);
+        try {
+			driver.switchTo().frame(driver.findElement(By.xpath("//iframe[contains(@title,'notif')]")));
+		
+	
+		WebElement close_popup = driver.findElement(By.cssSelector("a.close"));
+		
+		close_popup.click();
+		driver.switchTo().defaultContent();
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+		 
+        
+        driver.findElement(By.xpath("//a[@href=\"https://www.makemytrip.com/cabs/\"]")).click();
+        driver.findElement(By.xpath("//li[@data-cy=\"outstationOneWay\"]")).click();
+        String sourcPath="//div[@class=\"csw outstationOneway\"]/child::div[1]/child::div/child::label/child::input[@id=\"fromCity\"]";
+        WebElement sour=driver.findElement(By.xpath(sourcPath));
+        sour.click();
+        Thread.sleep(3000);
+       driver.findElement(By.xpath("//div[@role=\"combobox\"]/child::input")).sendKeys("Mumbai");
+       Robot r=new Robot();
+       r.keyPress(KeyEvent.VK_DOWN);
+       r.keyRelease(KeyEvent.VK_DOWN);
+       r.keyPress(KeyEvent.VK_ENTER);
+       r.keyRelease(KeyEvent.VK_ENTER);
+//        Thread.sleep(3000);
+//        Select s=new Select(sour);
+//        s.selectByIndex(0);
+//        String destPath="//div[@class=\"csw outstationOneway\"]/child::div[1]/child::div/child::label/child::input[@id=\"fromCity\"]";
+//        WebElement dest=driver.findElement(By.xpath(destPath));
+//        dest.click();
+        driver.findElement(By.xpath("//div[@role=\"combobox\"]/child::input")).sendKeys("Kolkata"); 
+        Thread.sleep(3000);
+        Robot ri=new Robot();
+        ri.keyPress(KeyEvent.VK_DOWN);
+        ri.keyRelease(KeyEvent.VK_DOWN);
+        ri.keyPress(KeyEvent.VK_ENTER);
+        ri.keyRelease(KeyEvent.VK_ENTER);
+//        Thread.sleep(3000);
+//        Select d=new Select(dest);
+//        d.selectByIndex(0);
+        Thread.sleep(3000);
+        driver.findElement(By.xpath("//a[text()=\"Search\"]")).click();
+        }
+}

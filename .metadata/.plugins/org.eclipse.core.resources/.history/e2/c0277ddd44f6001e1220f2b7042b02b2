@@ -1,0 +1,13 @@
+Feature: To check the functionality of Cabs section of MakeMyTrip
+
+  Scenario: To check OneWay functionality of cab option
+    Given User is on Homepage
+    When User selects Cab option
+    And User selects Outstaion One-Way option
+    And User enters the details Source,Destination,Departure_Date and Pickup_Time
+      | Source | Destination | Departure_Date | Pickup_Time |
+      | Mumbai | Pune        | 24-04-2024     | 11:00 AM    |
+    And Click on Search button
+    Then Landing page of Outstaion One-Way is opened
+
+  Scenario: To check

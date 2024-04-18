@@ -1,0 +1,13 @@
+Feature:To test the functionality of Cab option of MakeMyTrip Website.
+
+
+Scenario:To validate the functionality of One Way Cab Option
+Given User is on Homepage
+When User selects Cab option
+And User selects Outstaion One-Way option
+And User enters the From <"Source"> ,To <"Destination">,<"Departure_Date"> and <"Pickup-Time">
+And Click on Search button
+Then Landing page of Outstaion One-Way is opened
+
+|Source|Destination|Departure_Date|Pickup-Time|
+|Mumbai|Kolkata|MON Aug 07 2023|11:00AM|

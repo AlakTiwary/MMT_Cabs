@@ -1,0 +1,75 @@
+package PageFactory;
+
+import java.awt.AWTException;
+import java.awt.Robot;
+import java.awt.event.KeyEvent;
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+
+
+
+public class CabPageFactory {
+	WebDriver driver;
+	
+	public CabPageFactory(WebDriver driver) {
+		this.driver=driver;
+	}
+	
+	@FindBy(xpath="//a[@href=\"https://www.makemytrip.com/cabs/\"]")
+	WebElement HomepageCab;
+	
+	@FindBy(xpath="//li[@data-cy=\"outstationOneWay\"]")
+	WebElement oneWay;
+	
+	@FindBy(xpath="//div[@class=\"csw outstationOneway\"]/child::div[1]/child::div/child::label/child::input[@id=\"fromCity\"]")
+	WebElement source;
+	
+	@FindBy(xpath="//div[@class=\"csw outstationOneway\"]/child::div[1]/child::div/child::label/child::input[@id=\"to\"]")
+	WebElement destination;
+	
+	@FindBy(xpath="//a[text()=\"Search\"]")
+	WebElement search;
+	
+	@FindBy(xpath="//div[@role=\"combobox\"]/child::input")
+	WebElement sourceInput;
+	
+	@FindBy(xpath="//div[@role=\"combobox\"]/child::input")
+	WebElement destInput;
+	
+	public void Search() {
+		search.click();
+	}
+	
+	
+	
+	public void clickCab() {
+		HomepageCab.click();
+	}
+	
+	public void clickOneWay() {
+		oneWay.click();
+	}
+    public void enterSource(String s) throws AWTException {
+    	sourceInput.sendKeys(s);
+    	Robot r=new Robot();
+        r.keyPress(KeyEvent.VK_DOWN);
+        r.keyRelease(KeyEvent.VK_DOWN);
+        r.keyPress(KeyEvent.VK_ENTER);
+        r.keyRelease(KeyEvent.VK_ENTER);
+    }
+    public void enterDest(String s) throws AWTException {
+    	destInput.sendKeys(s);
+    	Robot r=new Robot();
+        r.keyPress(KeyEvent.VK_DOWN);
+        r.keyRelease(KeyEvent.VK_DOWN);
+        r.keyPress(KeyEvent.VK_ENTER);
+        r.keyRelease(KeyEvent.VK_ENTER);
+    }
+
+
+	
+	
+
+}

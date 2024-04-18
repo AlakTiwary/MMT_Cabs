@@ -1,0 +1,38 @@
+package MMT.Mmt_Cab;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.Select;
+
+import io.github.bonigarcia.wdm.WebDriverManager;
+public class App 
+{
+	 
+    public static void main( String[] args ) throws InterruptedException
+    {
+    	//PageFac pf=new PageFac();
+        WebDriverManager.chromedriver().setup();
+        WebDriver driver=new ChromeDriver();
+        driver.get("https://www.makemytrip.com/");
+        driver.manage().window().maximize();
+        Thread.sleep(3000);
+        
+        driver.findElement(By.xpath("//a[@href=\"https://www.makemytrip.com/cabs/\"]")).click();
+        driver.findElement(By.xpath("//li[@data-cy=\"outstationOneWay\"]")).click();
+        String sourcPath="//div[@class=\"csw outstationOneway\"]/child::div[1]/child::div/child::label/child::input[@id=\"fromCity\"]";
+        WebElement sour=driver.findElement(By.xpath(sourcPath));
+        driver.findElement(By.xpath("//div[@role="combobox"]/child::input")).sendKeys("Mumbai");
+        Thread.sleep(3000);
+        Select s=new Select(sour);
+        s.selectByIndex(0);
+        String destPath="//div[@class=\"csw outstationOneway\"]/child::div[1]/child::div/child::label/child::input[@id=\"fromCity\"]";
+        WebElement dest=driver.findElement(By.xpath(destPath));
+        dest.click();
+        dest.sendKeys("Kolkata"); 
+        Thread.sleep(3000);
+        Select d=new Select(dest);
+        d.selectByIndex(0);
+        driver.findElement(By.xpath("//a[text()=\"Search\"]")).click();
+        }
+}

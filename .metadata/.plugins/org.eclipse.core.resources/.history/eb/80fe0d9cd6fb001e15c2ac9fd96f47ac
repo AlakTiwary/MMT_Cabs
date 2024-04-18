@@ -1,0 +1,68 @@
+Feature: To check the functionality of Cabs section of MakeMyTrip
+
+  Background: 
+    Given User is on Homepage
+    When User selects Cab option
+
+  @OneWay
+  Scenario Outline: To check OneWay functionality of cab option
+    When User selects Outstaion One-Way option
+    And User enters the details "<Source>","<Destination>","<Departure_Date>" and "<Pickup_Time>"
+    And click on Search button
+    Then Landing page of Outstaion One-Way is opened
+
+    Examples: 
+      | Source | Destination | Departure_Date | Pickup_Time |
+      | Mumbai | Delhi        | 24,May 2024  | 10:00:AM    |
+
+  @Round-Trip
+  Scenario Outline: To verify Outstation Round-Trip functionality of cab option
+    And User clicks on Outstation Round-Trip
+    And User enters "<Source>","<Destination>","<Departure_Date>","<Return_Date>" ,"<Pickup_Time>" and "<Drop_Time>"
+    And Click on the Search button
+    Then Landing page of Outstation Round-Trip is opened
+
+    Examples: 
+      | Source | Destination | Departure_Date | Return_Date | Pickup_Time | Drop_Time |
+      | Mumbai | Pune        | 21,May,2024  | 28,May,2024  | 10:00:AM    | 10:00:AM  |
+
+      
+   @Airport-Transfer-From
+   Scenario: To verfiy Airport Transfer functionality of cab option
+      When User clicks on Airport Transfer
+      And User enter the details
+      |Pickup Type|From the Airport|
+      |Airport|Kempegowda|
+      |To|Bangalore|
+      |Departure|8,May 2024|
+      |Pickup-Time|10:00:AM|
+     And Click on the search button
+     And User click on book cab from the given options
+     Then Landing page of cab booking is opened and user review the booking
+      
+    @Hourly-Rentals
+    Scenario: To verify the Hourly Rental functionality of cab option
+       When User clicks on Hourly Rental
+       And User enters the details of trip
+       |Pickup Location|Kempegowda|
+       |Pickup Date|30,April 2024|
+       |Pickup Time|10:00:AM|
+       |Packages|2 hrs 20 kms|
+       And click on search button
+       Then Landing page of Hourly Rental is opened 
+       And User applies for an EV cab
+       And User click on Book cab
+       Then review page of booking is opened 
+      
+      
+      #Negative Scenario
+      @Airport-Transfer-To
+      Scenario: To verify  Airport transfer functionality of To the Airport.
+         When user clicks on airport transfer
+         And user enters the details of trip
+         And click on the search button
+       
+       
+    
+       
+    

@@ -1,0 +1,22 @@
+package PageFactory;
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+
+public class CabPFRound 
+{
+		WebDriver driver;
+		public CabPFRound(WebDriver driver) 
+		{
+		   this.driver=driver;
+		   PageFactory.initElements(driver,this);  
+		}
+		public void ExplicitWait(WebElement element,int time)
+		{
+			WebDriver wait=new WebDriver(driver,Duration.ofSeconds(3));
+			wait.until(ExpectedConditions.elementToBeSelected(element));
+		}
+		
+}

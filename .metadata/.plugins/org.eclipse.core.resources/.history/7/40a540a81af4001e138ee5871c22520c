@@ -1,0 +1,30 @@
+package MMT.Mmt_Cab;
+import PageFactory.CabPageFactory;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.Select;
+
+import io.github.bonigarcia.wdm.WebDriverManager;
+public class App 
+{
+	 
+    public static void main( String[] args ) throws InterruptedException
+    {
+    	CabPageFactory cpf=new CabPageFactory();
+        WebDriverManager.chromedriver().setup();
+        WebDriver driver=new ChromeDriver();
+        driver.get("https://www.makemytrip.com/");
+        driver.manage().window().maximize();
+        Thread.sleep(3000);
+        
+        driver.findElement(By.xpath("//a[@href=\"https://www.makemytrip.com/cabs/\"]")).click();
+        driver.findElement(By.xpath("")).sendKeys("Mumbai");
+        Thread.sleep(3000);
+        Select s=new Select();
+        driver.findElement(By.xpath("")).sendKeys("Kolkata"); 
+        Thread.sleep(3000);
+        
+        driver.findElement(By.xpath("")).click();
+        }
+}

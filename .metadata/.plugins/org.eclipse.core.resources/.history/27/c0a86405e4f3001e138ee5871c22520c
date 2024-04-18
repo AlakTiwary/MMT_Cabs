@@ -1,0 +1,29 @@
+package PageFactory;
+
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+
+public class CabPageFactory {
+	@FindBy(xpath="//input[@placeholder=\"From\"]")
+	WebElement source;
+	
+	@FindBy(xpath="//input[@placeholder=\"To\"]")
+	WebElement destination;
+	
+	@FindBy(xpath="//a[text()=\"Search\"]")
+	WebElement search;
+	
+	public void Search() {
+		search.click();
+	}
+	
+	@FindBy(xpath="//a[@href=\"https://www.makemytrip.com/cabs/\"]")
+	WebElement HomepageCab;
+	
+	public void clickCab() {
+		HomepageCab.click();
+	}
+	
+	
+
+}
